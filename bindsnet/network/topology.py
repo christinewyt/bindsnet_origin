@@ -123,6 +123,13 @@ class AbstractConnection(ABC, Module):
         """
         pass
 
+    @abstractmethod
+    def set_weight(self, **kwargs) -> None:
+        """
+        Set weight for the connection.
+        """
+        pass
+
 
 class Connection(AbstractConnection):
     # language=rst
@@ -253,6 +260,13 @@ class Connection(AbstractConnection):
         Contains resetting logic for the connection.
         """
         super().reset_state_variables()
+
+    def set_weight(self, **kwargs) -> None:
+        """
+        Set weights of connections
+        """
+        w_new = kwargs.get("w", None)
+        self.w = Parameter(w_new, requires_grad=False)
 
 
 class Conv2dConnection(AbstractConnection):
