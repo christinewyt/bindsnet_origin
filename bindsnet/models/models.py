@@ -7,7 +7,7 @@ from torch.nn.modules.utils import _pair
 import torch.nn as nn
 from torchvision import models
 
-from ..learning import PostPre, WeightDependentPostPre
+from ..learning import PostPre, WeightDependentPostPre, WeightDependentDopamine
 from ..network import Network
 from ..network.nodes import Input, LIFNodes, DiehlAndCookNodes, AdaptiveLIFNodes
 from ..network.topology import Connection, LocalConnection

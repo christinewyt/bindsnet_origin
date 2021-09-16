@@ -3,6 +3,7 @@ from .learning import (
     NoOp,
     PostPre,
     WeightDependentPostPre,
+    WeightDependentDopamine,
     Hebbian,
     MSTDP,
     MSTDPET,
