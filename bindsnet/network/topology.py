@@ -172,6 +172,8 @@ class Connection(AbstractConnection):
         super().__init__(source, target, nu, reduction, weight_decay, **kwargs)
 
         w = kwargs.get("w", None)
+        self.norm_L1 = kwargs.get("norm_L1", None)
+        self.norm_L2 = kwargs.get("norm_L2", None)
         if w is None:
             if (self.wmin == -np.inf).any() or (self.wmax == np.inf).any():
                 w = torch.clamp(torch.rand(source.n, target.n), self.wmin, self.wmax)
