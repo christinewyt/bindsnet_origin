@@ -767,7 +767,7 @@ def plot_dop_activities(dopamin_activities, interval, num_sample_digit, ims=None
   else:
             axes.clear()
 
-  dopamin_activities_copy = dopamin_activities.reshape(-1, interval)
+  dopamin_activities_copy = dopamin_activities.view(-1, interval)
   k = int(len(dopamin_activities)/interval)
   axes.plot(
       [interval * n for n in range(k)],

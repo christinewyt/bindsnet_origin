@@ -452,7 +452,7 @@ class WeightDependentDopamine(LearningRule):
         self.connection.w += update
 
         super().update()
-        s
+        
 class Hebbian(LearningRule):
     # language=rst
     """
