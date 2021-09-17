@@ -545,7 +545,7 @@ def plot_voltages(
     plot_type: str = "color",
     thresholds: Dict[str, torch.Tensor] = None,
     figsize: Tuple[float, float] = (8.0, 4.5),
-    Batch_plot_num: Optional[int] = None,
+    Batch_line_num: Optional[int] = None, 
 ) -> Tuple[List[AxesImage], List[Axes]]:
     # language=rst
     """
@@ -570,10 +570,10 @@ def plot_voltages(
     # for key in voltages.keys():
     #     voltages[key] = voltages[key].view(-1, voltages[key].size(-1))
     #voltages = {k: v.view(v.size(0), -1) for (k, v) in voltages.items()}
-    if Batch_plot_num is None:
+    if Batch_line_num is None:
       voltages = {k: v.view(v.size(0), -1) for (k, v) in voltages.items()}
     else: 
-      voltages = {k: v[:, 0:Batch_plot_num, :].view(v.size(0), -1) for (k, v) in voltages.items()}
+      voltages = {k: v[:, 0:Batch_line_num, :].view(v.size(0), -1) for (k, v) in voltages.items()}
 
     if time is None:
         for key in voltages.keys():
