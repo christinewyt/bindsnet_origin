@@ -268,7 +268,7 @@ class Connection(AbstractConnection):
         Set weights of connections
         """
         w_new = kwargs.get("w", None)
-        if w_new:
+        if w_new is not None:
             self.w = Parameter(w_new, requires_grad=False)
 
 
@@ -431,7 +431,7 @@ class Conv2dConnection(AbstractConnection):
         Set weights of connections
         """
         w_new = kwargs.get("w", None)
-        if w_new:
+        if w_new is not None:
             self.w = Parameter(w_new, requires_grad=False)
 
 
@@ -529,7 +529,7 @@ class MaxPool2dConnection(AbstractConnection):
         Set weights of connections
         """
         w_new = kwargs.get("w", None)
-        if w_new:
+        if w_new is not None:
             self.w = Parameter(w_new, requires_grad=False)
 
 
@@ -715,7 +715,7 @@ class LocalConnection(AbstractConnection):
         Set weights of connections
         """
         w_new = kwargs.get("w", None)
-        if w_new:
+        if w_new is not None:
             self.w = Parameter(w_new, requires_grad=False)
 
 
@@ -808,7 +808,7 @@ class MeanFieldConnection(AbstractConnection):
         Set weights of connections
         """
         w_new = kwargs.get("w", None)
-        if w_new:
+        if w_new is not None:
             self.w = Parameter(w_new, requires_grad=False)
 
 
@@ -923,6 +923,6 @@ class SparseConnection(AbstractConnection):
         Set weights of connections
         """
         w_new = kwargs.get("w", None)
-        if w_new:
+        if w_new is not None:
             self.w = Parameter(w_new, requires_grad=False)
 

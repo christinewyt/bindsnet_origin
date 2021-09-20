@@ -89,8 +89,8 @@ class LearningRule(ABC):
             (self.connection.wmin != -np.inf).any()
             or (self.connection.wmax != np.inf).any()
         ) and not isinstance(self, NoOp):
-            print("Clamp w within range")
-            self.connection.w.clamp_(self.connection.wmin, self.connection.wmax)      
+            self.connection.w.clamp_(self.connection.wmin, self.connection.wmax)  
+
 
 
 class NoOp(LearningRule):

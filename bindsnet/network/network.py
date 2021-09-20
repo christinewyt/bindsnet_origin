@@ -402,10 +402,10 @@ class Network(torch.nn.Module):
 
             # Run synapse updates.
             for c in self.connections:
+                source, target = c
                 self.connections[c].update(
                     mask=masks.get(c, None), learning=self.learning, **kwargs
                 )
-
             # # Get input to all layers.
             # current_inputs.update(self._get_inputs())
 
