@@ -413,9 +413,11 @@ class Network(torch.nn.Module):
             for m in self.monitors:
                 self.monitors[m].record()
 
-        # Re-normalize connections.
+        # Re-normalize and clamp the connections.
         for c in self.connections:
             self.connections[c].normalize()
+            
+            
 
     def reset_state_variables(self) -> None:
         # language=rst
@@ -552,14 +554,14 @@ class Network(torch.nn.Module):
             if not one_step:
                 current_inputs.update(self._get_inputs())
 
-            # Turn off dopamin exc input and reset learning rate to the original value
+            # Turn off dopamine exc input and reset learning rate to the original value
             if torch.min(Flag_spike)==0:
               Update_rule = getattr(self.connections[('X', 'Ae')], 'update_rule')
               setattr(Update_rule, 'nu', nu_original)
-              #print("At time:", t, "; Change learning rule from:", nu_dopamin, " to:", getattr(Update_rule, 'nu'))
-              #print("************************")
               Flag_dopamine=False
               Flag_learning_rate = False
+              #print("At time:", t, "; Change learning rule from:", nu_dopamine, " to:", getattr(Update_rule, 'nu'))
+              #print("************************")
               #print("End simulation @", t)
               break
 
@@ -592,7 +594,6 @@ class Network(torch.nn.Module):
                 if neuron_dopamine_idx != None and l=='Ae':
                   current_inputs[l][0, neuron_dopamine_idx] += 1.0
                   
-
                 if l in current_inputs:
                     self.layers[l].forward(x=current_inputs[l])
                 else:
@@ -662,7 +663,7 @@ class Network(torch.nn.Module):
             # Record state variables of interest.
             for m in self.monitors:
                 self.monitors[m].record()
-
+        """
         # Re-normalize connections.
         for c in self.connections:
           source, target = c
@@ -671,9 +672,9 @@ class Network(torch.nn.Module):
               self.connections[c].w *= norm_exc_L1 / self.connections[c].w.sum(0).view(1, -1)
             elif norm_exc_L2 is not None:
               w_norm = torch.sqrt((self.connections[c].w**2).sum())
-              self.connections[c].w *=norm_dop_L2 / w_norm
+              self.connections[c].w *= norm_exc_L2 / w_norm
           if source == "Dopamine":
             if norm_dop_L2 is not None:
               w_norm = torch.sqrt((self.connections[c].w**2).sum())
-              self.connections[c].w *=norm_dop_L2 / w_norm
-              
+              self.connections[c].w *= norm_dop_L2 / w_norm
+        """

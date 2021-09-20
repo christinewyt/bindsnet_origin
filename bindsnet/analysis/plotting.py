@@ -632,6 +632,7 @@ def plot_voltages(
                 args = (v[0], n_neurons[v[0]][0], n_neurons[v[0]][1], time[0], time[1])
                 plt.title("%s voltages for neurons (%d - %d) from t = %d to %d " % args)
                 plt.xlabel("Time (ms)")
+                plt.xlim([time[0], time[1]])
 
                 if plot_type == "line":
                     plt.ylabel("Voltage")
@@ -678,6 +679,7 @@ def plot_voltages(
                 axes[i].set_title(
                     "%s voltages for neurons (%d - %d) from t = %d to %d " % args
                 )
+                axes[i].set_xlim([time[0], time[1]])
 
             for ax in axes:
                 ax.set_aspect("auto")
@@ -720,6 +722,7 @@ def plot_voltages(
                 axes.set_title(
                     "%s voltages for neurons (%d - %d) from t = %d to %d " % args
                 )
+                axes.set_xlim([time[0], time[1]])
                 axes.set_aspect("auto")
 
         else:
@@ -754,6 +757,7 @@ def plot_voltages(
                 axes[i].set_title(
                     "%s voltages for neurons (%d - %d) from t = %d to %d " % args
                 )
+                axes[i].set_xlim([time[0], time[1]])
 
             for ax in axes:
                 ax.set_aspect("auto")
