@@ -425,6 +425,15 @@ class Conv2dConnection(AbstractConnection):
         Contains resetting logic for the connection.
         """
         super().reset_state_variables()
+    
+    def set_weight(self, **kwargs) -> None:
+        """
+        Set weights of connections
+        """
+        w_new = kwargs.get("w", None)
+        if w_new:
+            self.w = Parameter(w_new, requires_grad=False)
+
 
 
 class MaxPool2dConnection(AbstractConnection):
@@ -514,6 +523,15 @@ class MaxPool2dConnection(AbstractConnection):
         super().reset_state_variables()
 
         self.firing_rates = torch.zeros(self.source.s.shape)
+    
+    def set_weight(self, **kwargs) -> None:
+        """
+        Set weights of connections
+        """
+        w_new = kwargs.get("w", None)
+        if w_new:
+            self.w = Parameter(w_new, requires_grad=False)
+
 
 
 class LocalConnection(AbstractConnection):
@@ -691,6 +709,15 @@ class LocalConnection(AbstractConnection):
         Contains resetting logic for the connection.
         """
         super().reset_state_variables()
+    
+    def set_weight(self, **kwargs) -> None:
+        """
+        Set weights of connections
+        """
+        w_new = kwargs.get("w", None)
+        if w_new:
+            self.w = Parameter(w_new, requires_grad=False)
+
 
 
 class MeanFieldConnection(AbstractConnection):
@@ -775,6 +802,15 @@ class MeanFieldConnection(AbstractConnection):
         Contains resetting logic for the connection.
         """
         super().reset_state_variables()
+    
+    def set_weight(self, **kwargs) -> None:
+        """
+        Set weights of connections
+        """
+        w_new = kwargs.get("w", None)
+        if w_new:
+            self.w = Parameter(w_new, requires_grad=False)
+
 
 
 class SparseConnection(AbstractConnection):
@@ -881,3 +917,12 @@ class SparseConnection(AbstractConnection):
         Contains resetting logic for the connection.
         """
         super().reset_state_variables()
+
+    def set_weight(self, **kwargs) -> None:
+        """
+        Set weights of connections
+        """
+        w_new = kwargs.get("w", None)
+        if w_new:
+            self.w = Parameter(w_new, requires_grad=False)
+
