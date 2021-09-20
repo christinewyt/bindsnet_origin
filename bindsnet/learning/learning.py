@@ -89,6 +89,7 @@ class LearningRule(ABC):
             (self.connection.wmin != -np.inf).any()
             or (self.connection.wmax != np.inf).any()
         ) and not isinstance(self, NoOp):
+            print("Clamp w within range")
             self.connection.w.clamp_(self.connection.wmin, self.connection.wmax)      
 
 
@@ -203,7 +204,7 @@ class PostPre(LearningRule):
             source_x = self.source.x.view(batch_size, -1).unsqueeze(2)
             self.connection.w += self.reduction(torch.bmm(source_x, target_s), dim=0)
             del source_x, target_s
-            
+
         # Bound weights.
         if (
             (self.connection.wmin != -np.inf).any()
