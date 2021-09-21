@@ -771,7 +771,7 @@ def plot_voltages(
 
     return ims, axes
 
-def plot_dop_activities(dopamin_activities, interval, num_sample_digit, ims=None, axes=None, figsize: Tuple[float, float] = (8.0, 3.0),):
+def plot_dop_activities(dopamin_activities, interval, num_sample_digit, axes=None, figsize: Tuple[float, float] = (8.0, 3.0),):
   if not axes:
             _, axes = plt.subplots(figsize=figsize)
   else:
@@ -790,6 +790,7 @@ def plot_dop_activities(dopamin_activities, interval, num_sample_digit, ims=None
   axes.set_ylabel("Accuracy")
   axes.set_xticks(range(0, k*interval, num_sample_digit))
   axes.legend()
+  return axes
 
 
 def plot_imshow(

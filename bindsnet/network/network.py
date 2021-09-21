@@ -604,7 +604,7 @@ class Network(torch.nn.Module):
                   # Get the spiking information
                   spikes_dop = getattr(self.monitors['Dopamine_spikes'].obj, "s").squeeze()
                   if spikes_dop==True and t>10:
-                      print("Dopamine spike time:", t)
+                      #print("Dopamine spike time:", t)
                       Flag_dopamine = True
                       t_dopamine = t
 
@@ -663,7 +663,7 @@ class Network(torch.nn.Module):
             # Record state variables of interest.
             for m in self.monitors:
                 self.monitors[m].record()
-        """
+        
         # Re-normalize connections.
         for c in self.connections:
           source, target = c
@@ -677,4 +677,4 @@ class Network(torch.nn.Module):
             if norm_dop_L2 is not None:
               w_norm = torch.sqrt((self.connections[c].w**2).sum())
               self.connections[c].w *= norm_dop_L2 / w_norm
-        """
+
